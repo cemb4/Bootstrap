@@ -14,11 +14,18 @@
     <input type="text" th:field="*{lastName}" id="lastName"/>
     <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</div>
     <br/>
-    <label for="email">Введите email</label>
-    <input type="text" th:field="*{email}" id="email"/>
-    <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
-    <br/>
-    <br/>
+    <hr/>
+    <label for="newUserRole">Role</label>
+    <select class="form-select form-select-sm" multiple aria-label="multiple select example"
+            id="newUserRole" name="selectedRolesForNewUser">
+        <option
+                th:each="role : ${roles}"
+                th:value="${role.id}"
+                th:text="${role.name}"
+                th:selected="${role.toString().equals('ROLE_USER') || role.toString().equals('ROLE_ADMIN')}">
+        </option>
+
+    </select>
     <input type="submit" value="Update">
 </form>
 
